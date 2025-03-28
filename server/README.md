@@ -1,0 +1,1 @@
+# gymagotchi-api
