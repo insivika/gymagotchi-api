@@ -1,3 +1,4 @@
-import { signUp } from "./auth/index.js";
+import { signUp } from "./auth/sign-up.js";
+import { signIn } from "./auth/sign-in.js";
 
-export { signUp };
+export { signUp, signIn };
