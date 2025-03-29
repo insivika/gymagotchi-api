@@ -1,23 +1,31 @@
 import "dotenv/config";
-
-import express, { Express, Request, Response } from "express";
+import express, { Express, Request, Response, Router } from "express";
 import plansRouter from "./api/plans/index.js";
+import authRouter from "./api/auth/index.js";
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
+// Create API router
+const apiRouter = Router();
+
 // Middleware
 app.use(express.json());
 
-
-// Basic route
 app.get("/", (req: Request, res: Response) => {
   res.send("Gymagotchi API");
 });
 
+// Define routes on the API router
+apiRouter.get("/hello", (req: Request, res: Response) => {
+  res.send("Hello World");
+});
+apiRouter.use("/auth", authRouter);
+apiRouter.use("/plans", plansRouter);
 
 
-app.use("/plans", plansRouter);
+// Mount all API routes under /api
+app.use("/api", apiRouter);
 
 // Start server
 app.listen(port, () => {

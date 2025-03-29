@@ -1,5 +1,9 @@
 ## Supabase
 
+### Studio URL:
+
+http://127.0.0.1:54323
+
 ### Migrations
 
 ```bash
