@@ -15,6 +15,6 @@ export const getProfile = async (userId: string) => {
 
     return camelcaseKeys(data, { deep: true });
   } catch (error) {
-    throw camelcaseKeys(error, { deep: true });
+    throw camelcaseKeys(error as Record<string, unknown>, { deep: true });
   }
 };
