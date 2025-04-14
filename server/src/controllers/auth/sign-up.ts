@@ -10,9 +10,9 @@ export const signUp = async (values: { email: string; password: string }) => {
     }
     return camelcaseKeys(data, { deep: true });
   } catch (error) {
-    if (error.code === "user_already_exists") {
+    if (error instanceof Error && error.message === "user_already_exists") {
       throw { error: "User already exists" };
     }
-    throw camelcaseKeys(error, { deep: true });
+    throw camelcaseKeys(error as Record<string, unknown>, { deep: true });
   }
 };
