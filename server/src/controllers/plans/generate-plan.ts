@@ -1,5 +1,4 @@
 import { supabase } from "../../services/supabase.js";
-import { Request, Response } from "express";
 import { createResponse } from "../../services/openai.js";
 
 export const generatePlan = async ({
@@ -24,7 +23,7 @@ export const generatePlan = async ({
   }
 
   const exercisesString = exercises
-    .map((exercise) => `${exercise.name} - ${exercise.description}`)
+    .map((exercise) => `${exercise.id} - ${exercise.name}`)
     .join("\n");
 
   const prompt = `
@@ -50,29 +49,34 @@ export const generatePlan = async ({
     "plan": [
       {
         "day": 1,
+        "setName": [Generate a name for the group of exercises, eg "Chest Day"],
         "exercises": [{
-          "name": "Exercise 1",
+          "id": [Exercise ID (you must use the exercise id from the list of exercises)],
+          "name": [Exercise Name (you must use the exercise name from the list of exercises)],
           "sets": 3,
           "reps": 10,
           "rest": 10,
        
         },
         {
-          "name": "Exercise 2",
-          "sets": 3,
-          "reps": 10,
-          "rest": 10,
+          "id": [Exercise ID (you must use the exercise id from the list of exercises)],
+          "name": [Exercise Name (you must use the exercise name from the list of exercises)],
+          "sets": [Number of sets],
+          "reps": [Number of reps],
+          "rest": [Number of seconds to rest between sets],
         },
         ...
       ],
       },
       {
         "day": 2,
+        "setName": [Generate a name for the group of exercises, eg "Back Day"],
         "exercises": [{
-          "name": "Exercise 1",
-          "sets": 3,
-          "reps": 10,
-          "rest": 10,
+          "id": [Exercise ID (you must use the exercise id from the list of exercises)],
+          "name": [Exercise Name (you must use the exercise name from the list of exercises)],
+          "sets": [Number of sets],
+          "reps": [Number of reps],
+          "rest": [Number of seconds to rest between sets],
         },
         ...
       ]

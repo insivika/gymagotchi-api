@@ -9,6 +9,7 @@ if (!supabaseUrl || !supabaseKey) {
 }
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
+
 export const jwtAuth = async (
   req: Request,
   res: Response,
@@ -17,7 +18,8 @@ export const jwtAuth = async (
   try {
     const token = req.headers.authorization?.split(" ")[1];
     if (!token) {
-      return res.status(401).json({ error: "No token provided" });
+      res.status(401).json({ error: "No token provided" });
+      return;
     }
 
     const {
@@ -26,12 +28,13 @@ export const jwtAuth = async (
     } = await supabase.auth.getUser(token);
 
     if (error || !user) {
-      return res.status(401).json({ error: "Invalid token" });
+      res.status(401).json({ error: "Invalid token" });
+      return;
     }
 
     req.user = user;
     next();
   } catch (error) {
-    return res.status(401).json({ error: "Authentication failed" });
+    res.status(401).json({ error: "Authentication failed" });
   }
 };
