@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { generatePlan, savePlan } from "@/controllers/index.js";
+import { generatePlan, savePlan, getPlans } from "@/controllers/index.js";
 import { jwtAuth } from "@/services/supabase.js";
 const router = Router();
 
@@ -17,6 +17,16 @@ router.post("/save", jwtAuth, async (req, res) => {
     const userId = req.user.id;
 
     const response = await savePlan({ plan: req.body, userId });
+    res.status(200).send(response);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.get("/", jwtAuth, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const response = await getPlans({ userId });
     res.status(200).send(response);
   } catch (error) {
     res.status(500).send(error);

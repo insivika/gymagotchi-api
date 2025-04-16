@@ -6,7 +6,16 @@ import { getProfile } from "./profiles/get-profile/index.js";
 // Plans
 import { generatePlan } from "./plans/generate-plan/index.js";
 import { savePlan } from "./plans/save-plan/index.js";
+import { getPlans } from "./plans/get-plans/index.js";
 // Workouts
 import { createWorkout } from "./workouts/create-workout/index.js";
 
-export { signUp, signIn, getProfile, generatePlan, savePlan, createWorkout };
+export {
+  signUp,
+  signIn,
+  getProfile,
+  generatePlan,
+  savePlan,
+  createWorkout,
+  getPlans,
+};
