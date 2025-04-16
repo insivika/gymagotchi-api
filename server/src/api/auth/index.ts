@@ -1,4 +1,4 @@
-import { signUp, signIn } from "../../controllers/index.js";
+import { signUp, signIn } from "@/controllers/index.js";
 import { Router } from "express";
 
 const router = Router();

@@ -1,5 +1,5 @@
-import { supabase } from "../../services/supabase.js";
-import { createResponse } from "../../services/openai.js";
+import { supabase } from "@/services/supabase.js";
+import { createResponse } from "@/services/openai.js";
 
 export const generatePlan = async ({
   equipmentAccess,

@@ -1,4 +1,4 @@
-import { supabase } from "../../services/supabase.js";
+import { supabase } from "@/services/supabase.js";
 import camelcaseKeys from "camelcase-keys";
 
 export const getProfile = async (userId: string) => {
